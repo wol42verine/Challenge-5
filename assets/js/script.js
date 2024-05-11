@@ -18,6 +18,7 @@ function renderTaskList() {
 }
 
 // Todo: create a function to handle adding a new task
+//Save data to local storage
 function handleAddTask(event){
 
 }
