@@ -2,12 +2,12 @@
 let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 let nextId = JSON.parse(localStorage.getItem("nextId")) || 1;
 
-// Todo: create a function to generate a unique task id
+// create a function to generate a unique task id
 function generateTaskId() {
     return nextId++;
 }
 
-// Todo: create a function to create a task card
+// create a function to create a task card
 function createTaskCard(task) {
     return `
     <div class="card mb-3">
@@ -21,7 +21,8 @@ function createTaskCard(task) {
     `;
 }
 
-// Todo: create a function to render the task list and make cards draggable
+// create a function to render the task list and make cards draggable
+//Todo: dragging issues
 function renderTaskList() {
     $('#todo-cards').empty();
     $('#in-progress-cards').empty();
@@ -48,7 +49,7 @@ function renderTaskList() {
 
 
 
-// Todo: create a function to handle deleting a task
+// create a function to handle deleting a task
 function handleDeleteTask(event){
     let taskId = $(this).data('task-id');
     taskList=taskList.filter(task => task.id !== taskId);
@@ -56,7 +57,8 @@ function handleDeleteTask(event){
     renderTaskList();
 }
 
-// Todo: create a function to handle dropping a task into a new status lane
+// create a function to handle dropping a task into a new status lane
+//Todo: Issue dropping into To Do lane
 function handleDrop(event, ui) {
     let taskId = ui.draggable.find('.delete-btn').data('task-id');
     let newStatus =$(this).attr('id');
@@ -66,7 +68,7 @@ function handleDrop(event, ui) {
     renderTaskList();
 }
 
-// Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
+// when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
     renderTaskList();
 
@@ -86,7 +88,7 @@ $(document).ready(function () {
     });
 });
 
-// Todo: create a function to handle adding a new task
+// create a function to handle adding a new task
 //Save data to local storage
 function handleAddTask(event){
     event.preventDefault();
@@ -107,3 +109,5 @@ function handleAddTask(event){
     $('#formModal').modal('hide');
 
 }
+//Todo: color Code with Datepicker, future, Deadline or Late
+//Todo: Dragging to new column changes status to match
