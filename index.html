@@ -29,35 +29,36 @@
     <div class="modal fade" id="formModal" tabindex="1" aria-labelledby="formModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <h5 class="modal-title" id="formModalLable">Add New Task</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="taskForm">
-            <div class="mb-3">
-              <label for="taskTitle" class="form-label">Task Title</label>
-              <input type="text" class="form-control" id="taskTitle" required>
-            </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="formModalLable">Add New Task</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="taskForm">
+              <div class="mb-3">
+                <label for="taskTitle" class="form-label">Task Title</label>
+                <input type="text" class="form-control" id="taskTitle" required>
+              </div>
         
-        <div class="mb-3">
-          <label for="dueDate" class="form-label">Due Date</label>
+              <div class="mb-3">
+                <label for="dueDate" class="form-label">Due Date</label>
+                <input type="date" class="form-control" id="dueDate" required>
+              </div>
 
-          <input type="date" class="form-control" id="dueDate" required>
+              <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" required>
+                  <option value="To Do">To Do</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Done">Done</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Task</button>
+            </form>
+           </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="status" class="form-label">Status</label>
-          <select class="form-select" id="status" required>
-            <option value="To Do">To Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-          </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Add Task</button>
-    </form>
-    </div>
-    </div>
-    </div>
-    </div>
+       </div>
 
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
