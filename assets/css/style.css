@@ -14,3 +14,20 @@ body {
 .task-card:hover {
   cursor: grab;
 }
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-yellow {
+  background-color: yellow;
+}
+
+.bg-red {
+  background-color: red;
+}
+
+.card {
+  position: relative;
+  margin-bottom: 20px;
+}

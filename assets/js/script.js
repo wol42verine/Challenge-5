@@ -9,45 +9,49 @@ function generateTaskId() {
 
 // create a function to create a task card
 function createTaskCard(task) {
-    return `
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">${task.title}</h5>
-            <p class="card-text">Due Date: ${task.dueDate}</p>
-            <p class="card-text">Status: ${task.status}</p>
-            <button class="btn-danger delete-btn" data-task-id="${task.id}">Delete</button>
-        </div>
-    </div>
-    `;
-}
-
-// create a function to render the task list and make cards draggable
-//Todo: dragging issues
-function renderTaskList() {
-    $('#todo-cards').empty();
-    $('#in-progress-cards').empty();
-    $('#done-cards').empty();
-
-    taskList.forEach(task => {
-        let card = createTaskCard(task);
-        if (task.status === "To Do"){
-            $('#todo-cards').append(card);
-        } else if (task.status === "In Progress") {
-            $('#in-progress-cards').append(card);
+    let today = new Date().toISOString().slice(0,10);
+        let dateClass = '';
+        if (task.dueDate < today) {
+            dateClass = 'bg-white';
+        } else if (task.dueDate === today) {
+            dateClass = 'bg-yellow';
         } else {
-            $('#done-cards').append(card);
+            dateClass = 'bg-red';
         }
-    });
 
-    //make cards draggable
-    $(".card").draggable({
-        revert:true,
-        revertDuration:0
-    });
+        return `
+        <div class="card mb-3 ${dateClass}">
+            <div class="card-body">
+                <h5 class="card-title">${task.title}</h5>
+                <p class="card-text">Due Date: ${task.dueDate}</p>
+                <p class="card-text">Status: ${task.status}</p>
+                <button class="btn-danger delete-btn" data-task-id="${task.id}">Delete</button>
+            </div>
+        </div>
+        `;
+    }
 
-}
+    function renderTaskList(){
+        $('#todo.cards').empty();
+        $('#in-progress-cards').empty();
+        $('#done-cards').empty();
 
+        taskList.forEach(task => {
+            let card = createTaskCard(task);
+            if (task.status === "To Do"){
+                $('#todo-cards').append(card);
+            } else if (task.status === "In Progress") {
+                $('#in-progress-cards').append(card);
+            } else {
+                $('#done-cards').append(card);
+            }
+        });
 
+        $(".card").draggable({
+            revert:true,
+            revertDuration:0
+        });
+    }
 
 // create a function to handle deleting a task
 function handleDeleteTask(event){
@@ -58,15 +62,17 @@ function handleDeleteTask(event){
 }
 
 // create a function to handle dropping a task into a new status lane
-//Todo: Issue dropping into To Do lane
+//Todo: Issue dropping into new lane
 function handleDrop(event, ui) {
     let taskId = ui.draggable.find('.delete-btn').data('task-id');
     let newStatus =$(this).attr('id');
     let taskIndex = taskList.findIndex(task => task.id === taskId);
     taskList[taskIndex].status = newStatus;
     localStorage.setItem("tasks", JSON.stringify(taskList));
-    renderTaskList();
+    ui.draggable.appendTo($(this)).css({top:0, left: 0});
+    ui.draggable.find('.card-text:contains("Status")').text('Status:' + newStatus); 
 }
+
 
 // when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
@@ -109,5 +115,4 @@ function handleAddTask(event){
     $('#formModal').modal('hide');
 
 }
-//Todo: color Code with Datepicker, future, Deadline or Late
-//Todo: Dragging to new column changes status to match
+//Todo: Artifacts with dragging columns and Datepicker
