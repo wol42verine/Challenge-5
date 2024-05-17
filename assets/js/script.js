@@ -85,7 +85,7 @@ $(document).ready(function () {
         drop:handleDrop
     });
 
-    $('#dueDate').datepicker();
+    // $('#dueDate').datepicker();
 
     $('#formModal').on('show.bs.modal', function (event) {
         $('#taskTitle').val('');
